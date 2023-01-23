@@ -22,7 +22,10 @@
   // TODO: Add code to display the current date in the header of the page.
 // });
 
+//Creating variables for DOM elements
+var planDisplayEl = $('.plan'); /*Gotta link this to the textbox somehow*/
 
+//Displays today's date
 window.onload = function() {
   const now = dayjs();
   displayTodaysDate(now);
@@ -32,4 +35,24 @@ function displayTodaysDate(now) {
   document.getElementById('currentDay')
     .textContent = now.format('dddd, MMMM D');
 }
+// 
 
+//Takes events from storage, parses them, displays them
+function readPlansFromStorage() {
+  var plans = localStorage.getItem('plans');
+  if (plans) {
+    plans = JSON.parse(plans);
+  } else {
+    plans = [];
+  }
+  return plans;
+}
+
+//Trying to get the save button working
+document.getElementsByClassName(".saveBtn").addEventListener("click", savePlansToStorage);
+
+function savePlansToStorage(plans) {
+  localStorage.setItem('plans', JSON.stringify(plans));
+}
+
+//To do still: There needs to be some way to use the text content of plans
