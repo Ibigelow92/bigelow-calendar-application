@@ -3,8 +3,6 @@
 // in the html.
 $(function () {
 
- var timeBlock = $('#time-block');
-
 // TODO: Add a listener for click events on the save button. This code should
 // use the id in the containing time-block as a key to save the user input in
 // local storage. HINT: What does `this` reference in the click listener
@@ -34,21 +32,24 @@ for (var i = 0; i < 9; i ++) {
 displayToDos();
 
 function changeTimeBlockColor() {
-  var currentHour = dayjs().hour();
-  var hourBlock = $('.hour')
-  for (var i = 0; i < projects.length; i += 1)
-    if()
 
-          //Reference
-// if (projectDate.isBefore(today)) {
-//   rowEl.addClass('project-late');
-// } else if (projectDate.isSame(today)) {
-//   rowEl.addClass('project-today');
-// }
+  for (var i = 0; i < 9; i++) {
+  var currentHour = dayjs().hour();
+  var hourBlockValue = $('.hour')[i];
+
+    if(hourBlockValue.isBefore(currentHour)) {
+      $('.time-block').addClass('past');
+    }
+    if (hourBlockValue.isSame(currentHour)) {
+      $('.time-block').addClass('present');
+    }
+    if (hourBlockValue.isAfter(currentHour)) {
+      $('.time-block').addClass('future')
+    }
+  }
 }
 
 changeTimeBlockColor();
-
 
 // TODO: Add code to apply the past, present, or future class to each time
 // block by comparing the id to the current hour. HINTS: How can the id
